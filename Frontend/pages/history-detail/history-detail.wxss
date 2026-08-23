@@ -1,0 +1,124 @@
+page {
+  background: #f5f8fa;
+  font-family: -apple-system, sans-serif;
+}
+
+.container {
+  padding: 40rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+.title {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #1a2a3a;
+}
+.subtitle {
+  font-size: 24rpx;
+  color: #6b7a8a;
+  display: block;
+  margin-top: 4rpx;
+}
+
+.image-area {
+  width: 100%;
+  height: 380rpx;
+  background: #fff;
+  border-radius: 28rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+.image-area image {
+  width: 100%;
+  height: 100%;
+}
+
+.result-area {
+  width: 100%;
+  margin-top: 28rpx;
+  padding: 28rpx 24rpx 20rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.04);
+  text-align: center;
+}
+.result-name {
+  font-size: 44rpx;
+  font-weight: 600;
+  color: #2d8a4e;
+}
+.result-confidence {
+  font-size: 24rpx;
+  color: #6b7a8a;
+  display: block;
+  margin-top: 6rpx;
+}
+.result-time {
+  font-size: 22rpx;
+  color: #b0bec5;
+  display: block;
+  margin-top: 4rpx;
+}
+
+.detail-box {
+  margin-top: 28rpx;
+  width: 100%;
+  text-align: left;
+  background: #fff;
+  padding: 20rpx 18rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.04);
+}
+
+.detail-item {
+  display: flex;
+  padding: 8rpx 0;
+  font-size: 26rpx;
+  border-bottom: 1rpx solid #edf2f7;
+}
+.detail-item:last-child {
+  border-bottom: none;
+}
+.detail-item .label {
+  min-width: 120rpx;
+  flex-shrink: 0;
+  color: #6b7a8a;
+}
+.detail-item text:last-child {
+  color: #1a2a3a;
+  flex: 1;
+  word-break: break-word;
+}
+
+.caution-item {
+  padding: 8rpx 0;
+}
+.caution-label {
+  display: block;
+  font-size: 26rpx;
+  color: #6b7a8a;
+  margin-bottom: 4rpx;
+}
+.caution-text {
+  display: block;
+  font-size: 26rpx;
+  color: #1a2a3a;
+  word-break: break-word;
+}
+
+.back-btn {
+  margin-top: 40rpx;
+  padding: 20rpx 60rpx;
+  background: #2d8a4e;
+  color: #fff;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  text-align: center;
+}

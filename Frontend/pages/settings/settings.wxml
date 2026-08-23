@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="card">
+
+
+    <view class="setting-item">
+      <text class="item-title">📌 显示使用须知</text>
+      <switch checked="{{noticeEnabled}}" bindchange="toggleNoticeSwitch" color="#2d8a4e" style="transform: scale(0.9); transform-origin: right center; margin-right: -10rpx;"/>
+    </view>
+
+    <view class="divider"></view>
+    
+
+  <view class="setting-item">
+    <text class="item-title"> 🗑️ 清除识别历史</text>
+    <view class="action-btn" wx:if="{{!clearing}}" bindtap="clearHistory">
+     <text class="clear-text">清除</text>
+    </view>
+    <view class="action-btn loading-btn" wx:else>
+     <view class="spinner"></view>
+   </view>
+</view>
+
+  </view>
+</view>

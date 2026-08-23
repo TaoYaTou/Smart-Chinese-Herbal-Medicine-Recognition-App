@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="header">
+    <text class="title">📋 识别历史</text>
+  </view>
+  <view class="tap-hint" wx:if="{{historyList.length > 0}}">
+    <text class="hint-icon">👆</text>
+    <text class="hint-text">点击记录可查看详细信息</text>
+  </view>
+  <view class="history-list" wx:if="{{historyList.length > 0}}">
+    <view class="history-item" wx:for="{{historyList}}" wx:key="time" bindtap="goDetail" data-item="{{item}}">
+      <view class="item-left">
+        <image class="item-image" src="{{item.imagePath}}" mode="aspectFill"></image>
+      </view>
+      <view class="item-right">
+        <text class="item-name">{{item.name}}</text>
+        <text class="item-confidence">置信度 {{item.confidence}}%</text>
+        <text class="item-time">{{item.time}}</text>
+      </view>
+    </view>
+  </view>
+  <view wx:else class="empty">
+    <text class="empty-icon">📭</text>
+    <text class="empty-text">还没有识别记录</text>
+    <text class="empty-hint">去首页拍照识别吧</text>
+  </view>
+</view>

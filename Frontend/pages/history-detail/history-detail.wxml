@@ -1,0 +1,51 @@
+<view class="container">
+
+  <view class="header">
+    <text class="title">📋 识别详情</text>
+  </view>
+
+
+  <view class="image-area">
+    <image src="{{imagePath}}" mode="aspectFill"></image>
+  </view>
+
+
+  <view class="result-area">
+    <text class="result-name">{{name}}</text>
+    <text class="result-confidence">置信度 {{confidence}}%</text>
+    <text class="result-time">{{time}}</text>
+  </view>
+
+
+  <view class="detail-box">
+    <view class="detail-item">
+      <text class="label">学名</text>
+      <text>{{scientific || '暂无'}}</text>
+    </view>
+    <view class="detail-item">
+      <text class="label">性味</text>
+      <text>{{taste || '暂无'}}</text>
+    </view>
+    <view class="detail-item">
+      <text class="label">归经</text>
+      <text>{{meridian || '暂无'}}</text>
+    </view>
+    <view class="detail-item">
+      <text class="label">功效</text>
+      <text>{{efficacy || '暂无'}}</text>
+    </view>
+    <view class="detail-item">
+      <text class="label">主治</text>
+      <text>{{indications || '暂无'}}</text>
+    </view>
+    <view class="caution-item">
+      <text class="caution-label">注意事项</text>
+      <text class="caution-text">{{caution || '暂无'}}</text>
+    </view>
+  </view>
+
+
+  <view class="back-btn" bindtap="goBack">
+    <text>← 返回</text>
+  </view>
+</view>

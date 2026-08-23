@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/history/history",
+    "pages/history-detail/history-detail",
+    "pages/settings/settings",
+    "pages/contact/contact"
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#2d8a4e",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "识别"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史"
+      },
+      {
+        "pagePath": "pages/settings/settings",
+        "text": "设置"
+      },
+      {
+        "pagePath": "pages/contact/contact",
+        "text": "联系我们"
+      }
+    ]
+  },
+  "window": {
+    "renderer": "webview",
+    "navigationBarTitleText": "🌿灵析识",
+    "navigationBarBackgroundColor": "#2d8a4e",
+    "navigationBarTextStyle": "white"
+  }
+}

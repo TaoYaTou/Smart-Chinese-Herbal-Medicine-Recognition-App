@@ -1,0 +1,79 @@
+<view class="container">
+
+
+<view wx:if="{{showNotice}}" class="notice-overlay" catchtouchmove="preventTouch" bindtap="preventTap">
+  <view class="notice-box" catchtap="stopPropagation">
+    <text class="notice-title">使用须知</text>
+    <text class="notice-content">由于云托管环境镜像限制，模型在部署时进行了推理优化，部分网络图片的识别置信度可能略有降低或识别错误，请以实际结果为准</text>
+    <text class="notice-content">由于云托管服务器冷启动较慢，服务器连接时间约为10s左右，请耐心等待</text>
+    <text class="notice-footnote">识别结果仅供科普参考，不提供任何医疗建议。</text>
+    <button class="notice-btn" bindtap="closeNotice">我知道了，开始使用</button>
+  </view>
+</view>
+
+
+<view class="header">
+  <view class="header-center">
+    <text class="header-title">拍照识别草植</text>
+    
+
+    <view class="header-status" wx:if="{{serverStatus === 'ready'}}">
+      <text class="dot">●</text>
+      <text class="status-text">在线</text>
+    </view>
+    <view class="header-status loading" wx:elif="{{serverStatus === 'loading'}}">
+      <text class="dot loading-dot">●</text>
+      <text class="status-text">连接中</text>
+    </view>
+    <view class="header-status error" wx:elif="{{serverStatus === 'error'}}">
+      <text class="dot">●</text>
+      <text class="status-text">离线</text>
+    </view>
+  </view>
+</view>
+
+
+<view class="server-status" wx:if="{{serverStatus !== 'ready'}}">
+  <text wx:if="{{serverStatus === 'loading'}}">⏳ 服务器启动中，请稍候...</text>
+  <text wx:elif="{{serverStatus === 'error'}}" bindtap="retryWakeUp">⚠️ 服务器连接失败，点击重试</text>
+</view>
+
+<view class="network-tip" wx:if="{{networkStatus}}">
+  <text>{{networkStatus}}</text>
+</view>
+
+
+<view class="preview-area" bindtap="chooseImage">
+  <image wx:if="{{imagePath}}" src="{{imagePath}}" mode="aspectFill"></image>
+  <view wx:else class="placeholder">
+    <text>📷 点击拍照或选图</text>
+  </view>
+</view>
+
+
+<view class="result-area" wx:if="{{result}}">
+  <text class="result-name">{{result}}</text>
+  <text class="result-confidence">置信度 {{confidence}}%</text>
+  <view class="detail-toggle" bindtap="toggleDetail">
+    <text>{{showDetail ? '收起详情 ▲' : '查看详情 ▼'}}</text>
+  </view>
+  <view class="detail-box" wx:if="{{showDetail && detail}}">
+    <view class="detail-item"><text class="label">学名</text><text>{{detail.scientific || '暂无'}}</text></view>
+    <view class="detail-item"><text class="label">性味</text><text>{{detail.taste || '暂无'}}</text></view>
+    <view class="detail-item"><text class="label">归经</text><text>{{detail.meridian || '暂无'}}</text></view>
+    <view class="detail-item"><text class="label">功效</text><text>{{detail.efficacy || '暂无'}}</text></view>
+    <view class="detail-item"><text class="label">主治</text><text>{{detail.indications || '暂无'}}</text></view>
+    <view class="detail-item vertical"><text class="label">注意事项</text><text>{{detail.caution || '暂无'}}</text></view>
+  </view>
+</view>
+
+
+<view class="actions">
+  <button class="btn primary" bindtap="chooseImage" disabled="{{loading || serverStatus !== 'ready'}}">
+    {{loading ? '识别中...' : '📷 拍照识别'}}
+  </button>
+  <button class="btn secondary" bindtap="chooseImage" disabled="{{loading || serverStatus !== 'ready'}}">
+    🖼️ 从相册选择
+  </button>
+</view>
+</view>
