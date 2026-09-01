@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container {{pageAnimate ? 'page-enter' : ''}}">
   <view class="card">
     <view class="section">
       <text class="title">📧 联系开发者</text>
@@ -6,7 +6,7 @@
       <view class="contact-item">
         <text class="icon">📧</text>
         <text class="label">邮箱</text>
-        <text class="value">XXXXXXXXXXX@qq.com</text>
+        <text class="value">2723494508@qq.com</text>
         <text class="copy-btn" bindtap="copyEmail">📋</text>
       </view>
     </view>
@@ -16,11 +16,11 @@
     <view class="section">
       <text class="title">📚 关于本小程序</text>
       <text class="desc">本小程序是一款基于深度学习技术的中药材图像识别工具，核心算法采用轻量级 MobileNetV2 卷积神经网络，在保证较高识别精度的同时，实现了移动端的快速推理与低功耗运行。</text>
-      <text class="desc" style="margin-top: 12rpx;">模型训练使用了百度AI Studio平台公开的“163种中药材深度图像辨识库”，该数据集涵盖了163种常见中药材的标准化图像，经过数据清洗、增强与迁移学习训练，模型在验证集上的识别准确率达到 98.34%。</text>
+      <text class="desc" style="margin-top: 12rpx;">模型训练使用了百度AI Studio平台公开的"163种中药材深度图像辨识库"，该数据集涵盖了163种常见中药材的标准化图像，经过数据清洗、增强与迁移学习训练，模型在验证集上的识别准确率达到 98.34%。</text>
       <text class="desc" style="margin-top: 12rpx;">为兼顾云端部署的稳定性与响应速度，后端服务已迁移至 ONNX Runtime 推理框架，并部署于微信云托管环境，实现从图片上传到识别结果返回的端到端闭环。</text>
       <text class="desc" style="margin-top: 12rpx;">目前，本小程序可识别 163 种常见中药材，适用于基层用药鉴别、中药材流通环节的质量抽检、中医药文化科普等场景，识别结果仅供参考，不构成任何医疗建议或诊断依据。</text>
-     <text class="link" bindtap="copyDatasetLink">🔗 查看数据集详情</text>
-     <text class="footnote">识别结果仅供科普参考，不提供任何医疗建议。</text>
+      <text class="link" bindtap="copyDatasetLink">🔗 查看数据集详情</text>
+      <text class="footnote">识别结果仅供科普参考，不提供任何医疗建议。</text>
     </view>
   </view>
 </view>

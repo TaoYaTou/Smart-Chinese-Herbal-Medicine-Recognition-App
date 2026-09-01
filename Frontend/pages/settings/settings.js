@@ -1,17 +1,22 @@
 Page({
   data: {
+    pageAnimate: true,
     noticeEnabled: true,
     clearing: false
   },
 
   onShow() {
+    this.setData({ pageAnimate: false }, () => {
+      setTimeout(() => {
+        this.setData({ pageAnimate: true })
+      }, 20)
+    })
 
     this.syncNoticeStatus()
   },
 
   syncNoticeStatus() {
     let storedValue = wx.getStorageSync('showNotice')
-
     if (storedValue === undefined || storedValue === '') {
       storedValue = true
       wx.setStorageSync('showNotice', true)
@@ -35,7 +40,7 @@ Page({
 
     wx.showModal({
       title: '确认清除',
-      content: '确定要清除所有识别历史记录吗？此操作不可恢复。',
+      content: '确定要清除所有识别历史记录吗？图鉴数据不会丢失。',
       confirmColor: '#e74c3c',
       success: (res) => {
         if (res.confirm) {
@@ -44,7 +49,7 @@ Page({
             wx.setStorageSync('history', [])
             this.setData({ clearing: false })
             wx.showToast({
-              title: '已清除所有历史记录',
+              title: '已清除历史记录，图鉴保留',
               icon: 'success',
               duration: 1500
             })

@@ -1,51 +1,48 @@
-<view class="container">
+<view class="container {{pageAnimate ? 'page-enter' : ''}}">
 
-  <view class="header">
-    <text class="title">📋 识别详情</text>
+<view class="header">
+  <text class="title">{{mode === 'herbarium' ? '🌿 药材详情' : '📋 识别详情'}}</text>
+</view>
+
+<view class="image-area">
+  <image wx:if="{{imagePath}}" src="{{imagePath}}" mode="aspectFill"></image>
+  <view wx:else class="image-placeholder">
+    <text class="placeholder-icon">🌿</text>
+    <text class="placeholder-text">尚未发现此药材</text>
   </view>
+</view>
 
-
-  <view class="image-area">
-    <image src="{{imagePath}}" mode="aspectFill"></image>
+<view class="result-area">
+  <text class="result-name">{{name}}</text>
+  <text class="result-confidence" wx:if="{{mode === 'history' || (mode === 'herbarium' && discovered)}}">
+    识别置信度 {{confidence}}%
+  </text>
+  <text class="result-time" wx:if="{{mode === 'history'}}">{{time}}</text>
+  <text class="result-time" wx:if="{{mode === 'herbarium' && discovered}}">
+    🎉 发现于 {{discoveredTime}}
+  </text>
+  <view wx:if="{{mode === 'herbarium' && !discovered}}" class="undiscovered-tip">
+    <text class="tip-icon">🔍</text>
+    <text class="tip-text">你还没有发现这种药材</text>
+    <text class="tip-sub">去首页拍照识别，解锁更多药材吧！</text>
+    <button class="tip-btn" bindtap="goHome">📷 去识别</button>
   </view>
+</view>
 
-
-  <view class="result-area">
-    <text class="result-name">{{name}}</text>
-    <text class="result-confidence">置信度 {{confidence}}%</text>
-    <text class="result-time">{{time}}</text>
+<view class="detail-box">
+  <view class="detail-item"><text class="label">学名</text><text>{{scientific || '暂无'}}</text></view>
+  <view class="detail-item"><text class="label">性味</text><text>{{taste || '暂无'}}</text></view>
+  <view class="detail-item"><text class="label">归经</text><text>{{meridian || '暂无'}}</text></view>
+  <view class="detail-item"><text class="label">功效</text><text>{{efficacy || '暂无'}}</text></view>
+  <view class="detail-item"><text class="label">主治</text><text>{{indications || '暂无'}}</text></view>
+  <view class="caution-item">
+    <text class="caution-label">注意事项</text>
+    <text class="caution-text">{{caution || '暂无'}}</text>
   </view>
+</view>
 
+<view class="back-btn" bindtap="goBack">
+  <text>← 返回</text>
+</view>
 
-  <view class="detail-box">
-    <view class="detail-item">
-      <text class="label">学名</text>
-      <text>{{scientific || '暂无'}}</text>
-    </view>
-    <view class="detail-item">
-      <text class="label">性味</text>
-      <text>{{taste || '暂无'}}</text>
-    </view>
-    <view class="detail-item">
-      <text class="label">归经</text>
-      <text>{{meridian || '暂无'}}</text>
-    </view>
-    <view class="detail-item">
-      <text class="label">功效</text>
-      <text>{{efficacy || '暂无'}}</text>
-    </view>
-    <view class="detail-item">
-      <text class="label">主治</text>
-      <text>{{indications || '暂无'}}</text>
-    </view>
-    <view class="caution-item">
-      <text class="caution-label">注意事项</text>
-      <text class="caution-text">{{caution || '暂无'}}</text>
-    </view>
-  </view>
-
-
-  <view class="back-btn" bindtap="goBack">
-    <text>← 返回</text>
-  </view>
 </view>

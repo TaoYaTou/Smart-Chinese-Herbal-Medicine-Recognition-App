@@ -1,5 +1,4 @@
-<view class="container">
-
+<view class="container {{pageAnimate ? 'page-enter' : ''}}">
 
 <view wx:if="{{showNotice}}" class="notice-overlay" catchtouchmove="preventTouch" bindtap="preventTap">
   <view class="notice-box" catchtap="stopPropagation">
@@ -11,12 +10,9 @@
   </view>
 </view>
 
-
 <view class="header">
   <view class="header-center">
     <text class="header-title">拍照识别草植</text>
-    
-
     <view class="header-status" wx:if="{{serverStatus === 'ready'}}">
       <text class="dot">●</text>
       <text class="status-text">在线</text>
@@ -32,7 +28,6 @@
   </view>
 </view>
 
-
 <view class="server-status" wx:if="{{serverStatus !== 'ready'}}">
   <text wx:if="{{serverStatus === 'loading'}}">⏳ 服务器启动中，请稍候...</text>
   <text wx:elif="{{serverStatus === 'error'}}" bindtap="retryWakeUp">⚠️ 服务器连接失败，点击重试</text>
@@ -42,14 +37,12 @@
   <text>{{networkStatus}}</text>
 </view>
 
-
 <view class="preview-area" bindtap="chooseImage">
   <image wx:if="{{imagePath}}" src="{{imagePath}}" mode="aspectFill"></image>
   <view wx:else class="placeholder">
     <text>📷 点击拍照或选图</text>
   </view>
 </view>
-
 
 <view class="result-area" wx:if="{{result}}">
   <text class="result-name">{{result}}</text>
@@ -67,7 +60,6 @@
   </view>
 </view>
 
-
 <view class="actions">
   <button class="btn primary" bindtap="chooseImage" disabled="{{loading || serverStatus !== 'ready'}}">
     {{loading ? '识别中...' : '📷 拍照识别'}}
@@ -76,4 +68,5 @@
     🖼️ 从相册选择
   </button>
 </view>
+
 </view>

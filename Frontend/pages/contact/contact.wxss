@@ -46,6 +46,11 @@ page {
   display: flex;
   align-items: center;
   padding: 16rpx 0;
+  transition: all 0.25s ease;
+}
+.contact-item:active {
+  transform: scale(0.97);
+  background: #f0f2f5;
 }
 .contact-item .icon {
   font-size: 32rpx;
@@ -69,9 +74,11 @@ page {
   padding: 8rpx 16rpx;
   border-radius: 8rpx;
   background: #e8f5e9;
+  transition: all 0.2s ease;
 }
 .copy-btn:active {
-  opacity: 0.6;
+  transform: scale(0.9);
+  opacity: 0.7;
 }
 
 .link {

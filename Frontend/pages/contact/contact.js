@@ -1,7 +1,20 @@
 Page({
+  data: {
+    pageAnimate: true
+  },
+
+  onShow() {
+
+    this.setData({ pageAnimate: false }, () => {
+      setTimeout(() => {
+        this.setData({ pageAnimate: true })
+      }, 20)
+    })
+  },
+
   copyEmail() {
     wx.setClipboardData({
-      data: 'XXXXXXXXXXX@qq.com',
+      data: '2723494508@qq.com',
       success: () => {
         wx.showToast({
           title: '邮箱已复制',

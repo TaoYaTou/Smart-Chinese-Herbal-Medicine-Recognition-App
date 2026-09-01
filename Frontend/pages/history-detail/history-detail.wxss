@@ -76,7 +76,6 @@ page {
   border-radius: 20rpx;
   box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.04);
 }
-
 .detail-item {
   display: flex;
   padding: 8rpx 0;
@@ -96,7 +95,6 @@ page {
   flex: 1;
   word-break: break-word;
 }
-
 .caution-item {
   padding: 8rpx 0;
 }
@@ -121,4 +119,63 @@ page {
   border-radius: 50rpx;
   font-size: 28rpx;
   text-align: center;
+  transition: all 0.2s ease;
+}
+.back-btn:active {
+  transform: scale(0.94);
+  opacity: 0.85;
+}
+
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f5f6fa;
+}
+.placeholder-icon {
+  font-size: 80rpx;
+  opacity: 0.3;
+}
+.placeholder-text {
+  font-size: 28rpx;
+  color: #b0bec5;
+  margin-top: 12rpx;
+}
+
+
+.undiscovered-tip {
+  padding: 20rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tip-icon { font-size: 48rpx; }
+.tip-text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #6b7a8a;
+  margin-top: 10rpx;
+}
+.tip-sub {
+  font-size: 24rpx;
+  color: #b0bec5;
+  margin-top: 6rpx;
+}
+.tip-btn {
+  margin-top: 20rpx;
+  padding: 12rpx 48rpx;
+  background: #2d8a4e;
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 28rpx;
+  border: none;
+  transition: all 0.2s ease;
+}
+.tip-btn:active {
+  transform: scale(0.94);
+  opacity: 0.85;
 }

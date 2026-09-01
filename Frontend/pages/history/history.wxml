@@ -1,26 +1,93 @@
-<view class="container">
+<view class="container {{pageAnimate ? 'page-enter' : ''}}">
+
+<view class="fixed-header">
   <view class="header">
-    <text class="title">📋 识别历史</text>
+    <text class="title">📋 我的收藏</text>
   </view>
-  <view class="tap-hint" wx:if="{{historyList.length > 0}}">
-    <text class="hint-icon">👆</text>
-    <text class="hint-text">点击记录可查看详细信息</text>
-  </view>
-  <view class="history-list" wx:if="{{historyList.length > 0}}">
-    <view class="history-item" wx:for="{{historyList}}" wx:key="time" bindtap="goDetail" data-item="{{item}}">
-      <view class="item-left">
-        <image class="item-image" src="{{item.imagePath}}" mode="aspectFill"></image>
-      </view>
-      <view class="item-right">
-        <text class="item-name">{{item.name}}</text>
-        <text class="item-confidence">置信度 {{item.confidence}}%</text>
-        <text class="item-time">{{item.time}}</text>
-      </view>
+  <view class="tab-bar">
+    <view class="tab-item {{currentTab === 'history' ? 'active' : ''}}" 
+          bindtap="switchTab" data-tab="history">
+      📋 识别记录
+    </view>
+    <view class="tab-item {{currentTab === 'herbarium' ? 'active' : ''}}" 
+          bindtap="switchTab" data-tab="herbarium">
+      🌿 我的图鉴
     </view>
   </view>
-  <view wx:else class="empty">
-    <text class="empty-icon">📭</text>
-    <text class="empty-text">还没有识别记录</text>
-    <text class="empty-hint">去首页拍照识别吧</text>
+</view>
+
+<scroll-view class="scroll-content" scroll-y>
+
+  <view wx:if="{{currentTab === 'history'}}">
+    <view class="tap-hint" wx:if="{{historyList.length > 0}}">
+      <text class="hint-icon">👆</text>
+      <text class="hint-text">点击记录可查看详细信息</text>
+    </view>
+    <view class="history-list" wx:if="{{historyList.length > 0}}">
+      <view class="history-item fade-in-up" 
+            wx:for="{{historyList}}" wx:key="time" 
+            bindtap="goDetail" data-item="{{item}}"
+            style="animation-delay: {{index * 40}}ms;">
+        <view class="item-left">
+          <image class="item-image" src="{{item.imagePath}}" mode="aspectFill"
+                 binderror="onHistoryImageError" data-index="{{index}}"></image>
+        </view>
+        <view class="item-right">
+          <text class="item-name">{{item.name}}</text>
+          <text class="item-confidence">置信度 {{item.confidence}}%</text>
+          <text class="item-time">{{item.time}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="empty">
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">还没有识别记录</text>
+      <text class="empty-hint">去首页拍照识别吧</text>
+    </view>
   </view>
+
+  <view wx:elif="{{currentTab === 'herbarium'}}">
+    <view class="herbarium-stats" wx:if="{{herbariumList.length > 0}}">
+      <text class="stats-text">已发现 <text class="stats-num">{{discoveredCount}}</text> / {{totalCount}} 种药材</text>
+      <progress class="stats-progress" percent="{{discoveredCount / totalCount * 100}}" 
+                stroke-width="6" activeColor="#2d8a4e" backgroundColor="#e8f5e9" />
+    </view>
+
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" 
+             type="text" 
+             value="{{searchKeyword}}"
+             placeholder="搜索药材名称或学名..." 
+             bindinput="onSearchInput"
+             placeholder-class="search-placeholder" />
+    </view>
+
+    <view class="herbarium-grid" wx:if="{{filteredHerbariumList.length > 0}}">
+      <view class="herbarium-card fade-in-up" 
+            wx:for="{{filteredHerbariumList}}" wx:key="name" 
+            bindtap="goHerbariumDetail" data-herb="{{item}}"
+            style="animation-delay: {{index * 30}}ms;">
+        <view class="herbarium-image-wrapper">
+          <image class="herbarium-image" src="{{item.image || '/images/default_herb.png'}}" 
+                 mode="aspectFill" binderror="onImageError" data-index="{{index}}"></image>
+          <view class="herbarium-status {{item.discovered ? 'discovered' : 'undiscovered'}}">
+            <text>{{item.discovered ? '✅ 已发现' : '🔍 未发现'}}</text>
+          </view>
+        </view>
+        <view class="herbarium-info">
+          <text class="herbarium-name">{{item.name}}</text>
+          <text class="herbarium-scientific">{{item.scientific || ''}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="empty">
+      <text class="empty-icon">🔍</text>
+      <text class="empty-text">未找到匹配的药材</text>
+      <text class="empty-hint">试试其他关键词</text>
+    </view>
+  </view>
+
+</scroll-view>
+
 </view>
